@@ -462,6 +462,21 @@ void Adafruit_MPU6050::setMotionDetectionDuration(uint8_t dur) {
 
 /**************************************************************************/
 /*!
+ *     @brief  Sets the motion detection internal counter decrement
+ *     @param  dec
+ */
+/**************************************************************************/
+void Adafruit_MPU6050::setMotionDetectionDecrement(uint8_t dec) {
+  Adafruit_BusIO_Register mot_detect_ctrl =
+      Adafruit_BusIO_Register(i2c_dev, MPU6050_MOT_DETECT_CTRL, 1);
+  Adafruit_BusIO_Register motion_decrement =
+      Adafruit_BusIO_RegisterBits(&mot_detect_ctrl, 2, 0);
+
+  motion_decrement.write(dec);
+}
+
+/**************************************************************************/
+/*!
 *     @brief  Connects or disconects the I2C master pins to the main I2C pins
 *     @param  bypass
               If `true` the I2C Master pins are connected to the main I2C pins,
