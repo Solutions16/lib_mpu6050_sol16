@@ -469,7 +469,7 @@ void Adafruit_MPU6050::setMotionDetectionDuration(uint8_t dur) {
 void Adafruit_MPU6050::setMotionDetectionDecrement(uint8_t dec) {
   Adafruit_BusIO_Register mot_detect_ctrl =
       Adafruit_BusIO_Register(i2c_dev, MPU6050_MOT_DETECT_CTRL, 1);
-  Adafruit_BusIO_Register motion_decrement =
+  Adafruit_BusIO_RegisterBits motion_decrement =
       Adafruit_BusIO_RegisterBits(&mot_detect_ctrl, 2, 0);
 
   motion_decrement.write(dec);
